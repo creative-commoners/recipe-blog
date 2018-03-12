@@ -21,6 +21,7 @@ before_script:
 
   # Install composer dependencies
   - composer validate
+  - composer require --no-update silverstripe/installer 4.1.x-dev
   - if [[ "$DB" == "PGSQL" ]]; then composer require --no-update silverstripe/postgresql:2.0.x-dev; fi
   - composer install --prefer-source --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
 
@@ -29,4 +30,4 @@ before_script:
   - ~/.composer/vendor/bin/cow schema:validate
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --testsuite recipe-blog
